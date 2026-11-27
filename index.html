@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>实验室材料模型 · Laboratory Material from Different Subjects</title>
+<meta name="description" content="不同学科的实验室材料三维模型（Rhino .3dm），可在浏览器中旋转查看。">
+<link rel="stylesheet" href="./assets/app.css">
+</head>
+<body>
+<div class="gal-wrap">
+
+  <header class="gal-hero">
+    <span class="eyebrow">Rhino 3DM · Web Viewer</span>
+    <h1>实验室材料三维模型</h1>
+    <p>本仓库收录不同学科实验室使用的材料 / 构件三维模型（Rhino <code>.3dm</code> 格式）。
+       所有模型均可直接在浏览器中打开：点击条目进入交互式查看器，可用鼠标拖动旋转、滚轮缩放、右键平移，
+       并可切换前 / 后 / 左 / 右 / 顶 / 底等标准视角。</p>
+    <p class="en">Interactive 3D preview of laboratory materials stored as Rhino <code>.3dm</code> files.
+       Rotate with the left mouse button, zoom with the wheel, pan with the right button.</p>
+  </header>
+
+  <div class="gal-grid" id="grid"></div>
+
+  <section class="gal-note">
+    <h4>使用说明</h4>
+    <ul>
+      <li>模型在浏览器端直接解析 <code>.3dm</code>，无需安装 Rhino / 插件，也不做格式转换。</li>
+      <li>查看器参数：<code>?model=气体探测器.3dm</code> 可直接定位到指定模型；<code>?src=&lt;URL&gt;</code> 可加载任意外部 <code>.3dm</code> 地址。</li>
+      <li>模型原始单位为毫米，Rhino 的 Z 轴向上坐标在显示时转换为 three.js 的 Y 轴向上。</li>
+      <li>新增模型：把 <code>.3dm</code> 放入仓库根目录，并在 <code>assets/models.js</code> 中登记一条记录即可。</li>
+    </ul>
+  </section>
+
+  <footer class="gal-footer">
+    <span>Laboratory Material from Different Subjects</span>
+    <span id="lib-versions"></span>
+  </footer>
+
+</div>
+
+<script type="module" src="./assets/gallery.js"></script>
+</body>
+</html>
