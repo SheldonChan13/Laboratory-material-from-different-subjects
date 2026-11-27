@@ -34,18 +34,18 @@
 
 ---
 
-## 内嵌交互预览
+## 模型预览
 
-下面的预览是**真实可交互**的：把鼠标移到预览框内，按住左键拖动即可旋转模型，
-滚轮缩放，右键拖动平移。
+下面是模型自动旋转的预览动画。**点击图片**进入交互式 3D 页面，
+在页面里按住鼠标左键拖动即可自由旋转、滚轮缩放、右键平移，并可切换前 / 后 / 左 / 右 / 顶 / 底等标准视角。
 
 ### 架空地板 · Raised Access Floor
 
-<iframe src="https://5qlip7r2fmuvu.space.mcode.cn/viewer.html?model=%E6%9E%B6%E7%A9%BA%E5%9C%B0%E6%9D%BF.3dm" width="100%" height="520" frameborder="0" allowfullscreen></iframe>
+[![架空地板 · Raised Access Floor（点击进入交互式 3D）](https://5qlip7r2fmuvu.space.mcode.cn/previews/raised-floor.gif)](https://5qlip7r2fmuvu.space.mcode.cn/viewer.html?model=%E6%9E%B6%E7%A9%BA%E5%9C%B0%E6%9D%BF.3dm)
 
 ### 气体探测器 · Gas Detector
 
-<iframe src="https://5qlip7r2fmuvu.space.mcode.cn/viewer.html?model=%E6%B0%94%E4%BD%93%E6%8E%A2%E6%B5%8B%E5%99%A8.3dm" width="100%" height="520" frameborder="0" allowfullscreen></iframe>
+[![气体探测器 · Gas Detector（点击进入交互式 3D）](https://5qlip7r2fmuvu.space.mcode.cn/previews/gas-detector.gif)](https://5qlip7r2fmuvu.space.mcode.cn/viewer.html?model=%E6%B0%94%E4%BD%93%E6%8E%A2%E6%B5%8B%E5%99%A8.3dm)
 
 ---
 
