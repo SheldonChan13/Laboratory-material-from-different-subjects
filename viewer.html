@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D 模型查看器 · Laboratory Material from Different Subjects</title>
+<meta name="description" content="在浏览器中直接读取 Rhino .3dm 文件，支持旋转、缩放、平移与标准视角切换。">
+<link rel="stylesheet" href="./assets/app.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/rhino3dm@8.35.0/rhino3dm.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <canvas id="view"></canvas>
+
+  <div class="topbar">
+    <div class="brand">
+      <b>3D 查看器</b>
+      <span>Rhino .3dm</span>
+    </div>
+
+    <select id="model-select" class="model-select" title="切换模型"></select>
+
+    <div class="toolgroup" role="group" aria-label="视角">
+      <button class="tool" id="btn-reset" title="复位视角">复位</button>
+      <button class="tool" data-view="iso" title="等轴测视角">等轴测</button>
+      <button class="tool" data-view="front" title="前视">前</button>
+      <button class="tool" data-view="back" title="后视">后</button>
+      <button class="tool" data-view="left" title="左视">左</button>
+      <button class="tool" data-view="right" title="右视">右</button>
+      <button class="tool" data-view="top" title="顶视">顶</button>
+      <button class="tool" data-view="bottom" title="底视">底</button>
+    </div>
+
+    <div class="toolgroup" role="group" aria-label="显示">
+      <button class="tool" id="btn-wire" aria-pressed="false" title="线框显示">线框</button>
+      <button class="tool" id="btn-edges" aria-pressed="false" title="显示模型边线">边线</button>
+      <button class="tool" id="btn-ground" aria-pressed="true" title="显示地面与网格">网格</button>
+      <button class="tool" id="btn-axes" aria-pressed="true" title="显示坐标轴">坐标轴</button>
+      <button class="tool" id="btn-shot" title="保存当前视角为 PNG">截图</button>
+      <button class="tool" id="btn-full" title="全屏">全屏</button>
+    </div>
+  </div>
+
+  <aside class="panel info">
+    <h2 id="info-name">—</h2>
+    <div class="sub">Rhino 3DM · 浏览器内解析</div>
+    <dl>
+      <dt>文件大小</dt><dd id="info-size">—</dd>
+      <dt>几何对象</dt><dd id="info-objects">—</dd>
+      <dt>三角面数</dt><dd id="info-tris">—</dd>
+      <dt>包围盒</dt><dd id="info-dims">—</dd>
+    </dl>
+    <hr>
+    <dl>
+      <dt>单位</dt><dd>毫米 (mm)</dd>
+      <dt>坐标</dt><dd>Y 轴向上</dd>
+      <dt>解析</dt><dd>rhino3dm 8.35</dd>
+      <dt>渲染</dt><dd>three.js 0.187</dd>
+    </dl>
+    <a class="download" id="info-download" href="#" download>下载 .3dm 原文件</a>
+  </aside>
+
+  <div class="scalebar" id="scalebar">
+    <span class="bar" id="scalebar-bar"></span>
+    <span id="scalebar-text">—</span>
+  </div>
+
+  <div class="hint">左键拖动 = 旋转 · 滚轮 = 缩放 · 右键拖动 = 平移 · 双击 = 复位</div>
+
+  <div class="overlay" id="overlay">
+    <div class="spinner" id="spinner"></div>
+    <progress id="progress" max="1" value="0"></progress>
+    <div class="msg" id="overlay-msg">正在初始化…</div>
+    <button class="btn" id="retry" style="display:none">重试</button>
+  </div>
+</div>
+
+<script type="module" src="./assets/viewer.js"></script>
+</body>
+</html>
