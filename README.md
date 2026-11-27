@@ -113,40 +113,55 @@
 
 ## 部署说明
 
-当前查看器由静态托管发布，地址为 `https://5qlip7r2fmuvu.space.mcode.cn/`。
-若希望**完全由本仓库自托管**（GitHub Pages），只需两步：
+查看器是纯静态站点，站点文件（`index.html`、`viewer.html`、`assets/`）已经放在本仓库根目录，
+模型 `.3dm` 也在根目录，因此**开启 GitHub Pages 即可由本仓库自托管**，不需要再上传任何文件。
 
-1. 把 `index.html`、`viewer.html`、`assets/` 三个条目上传到仓库根目录；
-2. 仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**，
-   并添加 `.github/workflows/pages.yml`：
+**方式一 · 从分支部署（最简，推荐）**
 
-   ```yaml
-   name: Deploy GitHub Pages
-   on:
-     push:
-       branches: [main]
-   permissions:
-     contents: read
-     pages: write
-     id-token: write
-   jobs:
-     deploy:
-       environment:
-         name: github-pages
-         url: ${{ steps.deployment.outputs.page_url }}
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v4
-         - uses: actions/configure-pages@v5
-         - uses: actions/upload-pages-artifact@v3
-           with:
-             path: '.'
-         - id: deployment
-           uses: actions/deploy-pages@v4
-   ```
+仓库 **Settings → Pages → Build and deployment → Source** 选择 **Deploy from a branch**，
+Branch 选 `main`、Folder 选 `/ (root)`，保存即可。站点地址：
 
-3. 随后把本文所有 `https://5qlip7r2fmuvu.space.mcode.cn/` 替换为
-   `https://sheldonchan13.github.io/Laboratory-material-from-different-subjects/` 即可。
+```
+https://sheldonchan13.github.io/Laboratory-material-from-different-subjects/
+```
+
+**方式二 · GitHub Actions 部署**
+
+先在网页端新增 `.github/workflows/pages.yml`（GitHub App / 令牌无法直接写入工作流文件）：
+
+```yaml
+name: Deploy GitHub Pages
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+然后把 Pages 的 Source 改为 **GitHub Actions**。
+
+**当前地址**
+
+本文中的预览地址指向已发布的静态托管 `https://5qlip7r2fmuvu.space.mcode.cn/`；
+一旦 Pages 开启，把本文所有 `https://5qlip7r2fmuvu.space.mcode.cn/`
+替换为 `https://sheldonchan13.github.io/Laboratory-material-from-different-subjects/`
+即可完全由仓库自托管。
 
 ---
 
